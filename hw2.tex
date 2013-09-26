@@ -1,6 +1,7 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath, amssymb}
+\usepackage{mathrsfs}
 \title{HW2}
 \author{Andrew Rosen}
 \date{\today}
@@ -31,5 +32,27 @@ $$\left(\left(C_{a} \boxplus \bar{K_{1}}\right) \oplus P_{a} \oplus P_{b}\right)
 
 We can then use  $\bar{K_{1}}$ to find $K_{0}$ via
 $$  K_{0} = (C_{a} \boxplus \bar{K_{1}}) \oplus P_{a} $$
+\section{Question 2}
+
+I will solve this problem for the general case.  Let me denote the encryption of message $m$ as $E(m)$, since the key is not relevent here.  The defined encryption scheme being linear means 
+$$E(m_{a}) \oplus E(m_{b})  =  E(m_{a} \oplus m_{b})$$
+
+This also implies that a message made of all zeroes will be encrypted to a message of all zeroes.
+
+Now, let each input $m_{i}$ and corresponding output $E(m_{i})$ be $l$ bits long.  Choose $l$ ciphertexts $E(m_{i})$ such that
+
+$$E(m_{1}) = 1000\dots$$
+$$E(m_{2}) = 0100\dots$$
+$$E(m_{3}) = 0010\dots$$
+$$\cdots{}$$
+$$E(m_{l-1}) = \dots0010$$
+$$E(m_{l}) = \dots0001$$
+
+I denote this set $\mathscr{E}$. If I know the corresponding plaintexts $\{m_{1}, m_{2}, \dots m_{l}  \}$, I can decipher any message using the linear property of $E$. Let $E(m_{k})$ be an intercepted message. $E(m_{k}$ can be described by XORing a unique subset of  $\mathscr{E}$.  Now becuase of the linear property of $E$, I can retreive $m_{k}$ by XORing the $m$'s that correspond to the aforementioned unique subset.  
+
+For example, let $$E(m_{k}) = E(m_{1}) \oplus E(m_{17}) \oplus E(m_{42}) $$ 
+We can retrieve $m_{k}$ via
+
+$$m_{k} = m_{1} \oplus m_{17} \oplus m_{42} $$
 
 \end{document}
