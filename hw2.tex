@@ -1,9 +1,35 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
-\title{}
+\usepackage{amsmath, amssymb}
+\title{HW2}
 \author{Andrew Rosen}
 \date{\today}
 \begin{document}
-a 
 \section{Question 1}
+
+\subsection{Part a}
+$$P = (C \boxplus \bar{K_{1}}) \oplus K_{0}$$ where $\bar{K_{1}}$ is the complement of $K_{1}$. 
+\subsection{Part b}
+Let our plaintext messages be $P_{a}, P_{b} $ and their corresponding ciphertexts be $C_{a}, C_{b}$.  We know that
+
+$$ C_{a} = (P_{a} \oplus K_{0}) \boxplus K_{1} $$
+$$ C_{b} = (P_{b} \oplus K_{0}) \boxplus K_{1} $$
+
+We can define $K_{0}$ in terms of $C_{a}$, $P_{a}$, and $K_{1}$ by rearranging the variables.   
+$$ (P_{a} \oplus K_{0}) \boxplus K_{1}  = C_{a} $$
+$$  P_{a} \oplus K_{0} = C_{a} \boxplus \bar{K_{1}} $$
+$$  K_{0} = (C_{a} \boxplus \bar{K_{1}}) \oplus P_{a} $$
+
+Likewise,
+$$  K_{0} = (C_{b} \boxplus \bar{K_{1}}) \oplus P_{b} $$
+
+Which means
+
+$$(C_{a} \boxplus \bar{K_{1}}) \oplus P_{a} = (C_{b} \boxplus \bar{K_{1}}) \oplus P_{b} $$
+$$(C_{a} \boxplus \bar{K_{1}}) \oplus P_{a} \oplus P_{b} = C_{b} \boxplus \bar{K_{1}}$$
+$$\left(\left(C_{a} \boxplus \bar{K_{1}}\right) \oplus P_{a} \oplus P_{b}\right) \boxplus C_{b} =  \bar{K_{1}}$$
+
+We can then use  $\bar{K_{1}}$ to find $K_{0}$ via
+$$  K_{0} = (C_{a} \boxplus \bar{K_{1}}) \oplus P_{a} $$
+
 \end{document}
