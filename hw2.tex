@@ -14,26 +14,21 @@ $$P = (C \boxplus \bar{K_{1}}) \oplus K_{0}$$ where $\bar{K_{1}}$ is the complem
 \subsection{Part b}
 Let our plaintext messages be $P_{a}, P_{b} $ and their corresponding ciphertexts be $C_{a}, C_{b}$.  We know that
 
-$$ C_{a} = (P_{a} \oplus K_{0}) \boxplus K_{1} $$
-$$ C_{b} = (P_{b} \oplus K_{0}) \boxplus K_{1} $$
+$$ C_{n} = (P_{n} \oplus K_{0}) \boxplus K_{1} $$
 
 We can define $K_{0}$ in terms of $C_{a}$, $P_{a}$, and $K_{1}$ by rearranging the variables.   
-$$ (P_{a} \oplus K_{0}) \boxplus K_{1}  = C_{a} $$
-$$  P_{a} \oplus K_{0} = C_{a} \boxplus \bar{K_{1}} $$
-$$  K_{0} = (C_{a} \boxplus \bar{K_{1}}) \oplus P_{a} $$
+$$ (P_{n} \oplus K_{0}) \boxplus K_{1}  = C_{n} $$
+$$  P_{a} \oplus K_{n} = C_{a} \boxplus \bar{K_{n}} $$
+$$  K_{0} = (C_{n} \boxplus \bar{K_{1}}) \oplus P_{n} $$
 
-Likewise,
-$$  K_{0} = (C_{b} \boxplus \bar{K_{1}}) \oplus P_{b} $$
-
-Which means
+Which means you can't solve it without solving $\bar{K_{1}}$ or ${K_{1}}$.
 
 $$(C_{a} \boxplus \bar{K_{1}}) \oplus P_{a} = (C_{b} \boxplus \bar{K_{1}}) \oplus P_{b} $$
 $$(C_{a} \boxplus \bar{K_{1}}) \oplus P_{a} \oplus P_{b} = C_{b} \boxplus \bar{K_{1}}$$
 $$\left(\left(C_{a} \boxplus \bar{K_{1}}\right) \oplus P_{a} \oplus P_{b}\right) \boxplus C_{b} =  \bar{K_{1}}$$
 
-We can then use  $\bar{K_{1}}$ to find $K_{0}$ via
-$$  K_{0} = (C_{a} \boxplus \bar{K_{1}}) \oplus P_{a} $$
-REWORK
+The solution is intractably self-referential, as $\oplus$ is not distributive.  There is no easy solution for $K_{0}$ or $K_{1}$.
+
 
 \section{Question 2}
 
