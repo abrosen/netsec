@@ -78,5 +78,29 @@ $$C_{2} =  C_{1}^{e} \oplus (B_{1}^{e} \oplus B_{2}) $$
 
 
 Thus we can always choose a $C_{2}$ s.t. $RSAH(C_{1},C_{2}) = RSAH(B_{1},B_{2})$, and $RSAH$ does not satisfy weak collision resistance $\blacksquare$.
+\pagebreak
+
+\section{Question 5}
+
+\subsection{Message Integrity}
+In both cases Bob will see his computed $auth(x)$ won't match the sent $auth(x)$.
+
+\subsection{Replay Attack} 
+From Bob's perspective, Alice sent him 101 messages that just happen to be identical.  He won't detect Oscar unless the flood of messages itself registers as unusual to him. 
+
+\subsection{Sender Authentication with cheating 3rd party}
+Assume the question means that Bob has $x$ and is trying to verify who the sent the message, Alice or Oscar (the other alternative would be solving $\exists x$).  A message signed by the senders private key can be decrypted with (and only with, given large enough keys), the corresponding public key.  Bob can just check $auth(x)$ with Alice and Oscar's public keys to see who is telling the truth.
+
+MACs are similarly checked, but check the secret key to generate $auth(x)$ instead.  So long as the keys Alice and Oscar are using aren't the same, it will be easy to verify who sent what.
+
+\subsection{Authentication with Bob cheating}
+
+If Alice sent $x$ using a digital signature, then $auth(x)$ will be generated with her private key. If Alice can show that $auth(x)$ can only be verified via her public key, then Bob is lying.
+
+Alice won't be able to prove this in the same way using MACs, however.
+
+\section{Question 6}
+
+
 
 \end{document}
