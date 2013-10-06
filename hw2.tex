@@ -28,7 +28,7 @@ $$(C_{a} \boxplus \bar{K_{1}}) \oplus P_{a} \oplus P_{b} = C_{b} \boxplus \bar{K
 $$\left(\left(C_{a} \boxplus \bar{K_{1}}\right) \oplus P_{a} \oplus P_{b}\right) \boxplus C_{b} =  \bar{K_{1}}$$
 
 The solution is intractably self-referential, as $\oplus$ is not distributive.  There is no easy solution for $K_{0}$ or $K_{1}$.
-
+\pagebreak
 
 \section{Question 2}
 
@@ -52,5 +52,31 @@ For example, let $$E(m_{k}) = E(m_{1}) \oplus E(m_{17}) \oplus E(m_{42}) $$
 We can retrieve $m_{k}$ via
 
 $$m_{k} = m_{1} \oplus m_{17} \oplus m_{42} $$
+
+
+
+\section{Question 3}
+\subsection{i} Since Bob already knows $k$ and he knows the length of $v$, $(v||c)$ is effectively $(v,c)$, yeilding:
+$$m = \text{RC4}(v || k) \oplus c$$.
+\subsection{ii}
+If $v_{i} = v_{j}$, then $(v_{i} || k) =  (v_{j} || k)$, meaning the same input to RC4 would have been used.
+
+\section{Question 4}
+All RSA operations with a given key occur in the same mod space.  For brevity, assume that every mathematical operation below has an unwritten mod $n$ as a component. 
+
+This question can be solved via expansion.  We have been given $B_{1}$ and $B_{2}$, as well as $C_{1}$, as well as key$\{e,n\}$.  Let us solve for $C_{2}$ such that $RSAH(C_{1},C_{2}) = RSAH(B_{1},B_{2})$.
+
+$$RSAH(C_{1},C_{2}) = RSA(RSA(B_{1}) \oplus B_{2} ) = RSA( B_{1}^{e} \oplus B_{2} ) $$
+
+$$RSA(RSA(C_{1}) \oplus C_{2} ) =  RSA(B_{1}^{e} \oplus B_{2} )$$
+
+$$(C_{1}^{e} \oplus C_{2} )^{e} =  (B_{1}^{e} \oplus B_{2} )^{e}$$
+
+$$C_{1}^{e} \oplus C_{2} =  B_{1}^{e} \oplus B_{2} $$
+
+$$C_{2} =  C_{1}^{e} \oplus (B_{1}^{e} \oplus B_{2}) $$
+
+
+Thus we can always choose a $C_{2}$ s.t. $RSAH(C_{1},C_{2}) = RSAH(B_{1},B_{2})$, and $RSAH$ does not satisfy weak collision resistance $\blacksquare$.
 
 \end{document}
