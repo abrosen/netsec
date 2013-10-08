@@ -59,7 +59,7 @@ $$m_{k} = m_{1} \oplus m_{17} \oplus m_{42} $$
 \subsection{i} Since Bob already knows $k$ and he knows the length of $v$, $(v||c)$ is effectively $(v,c)$, yielding:
 $$m = \text{RC4}(v || k) \oplus c$$.
 \subsection{ii}
-We can detect the same input stream just by trivially looking for two messages where the $v$'s match.
+We can detect reuse by trivially looking for two messages where the $v$'s match.
 
 
 \section{Question 4}
@@ -78,13 +78,13 @@ $$C_{1}^{e} \oplus C_{2} =  B_{1}^{e} \oplus B_{2} $$
 $$C_{2} =  C_{1}^{e} \oplus (B_{1}^{e} \oplus B_{2}) $$
 
 
-Thus we can always choose a $C_{2}$ s.t. $RSAH(C_{1},C_{2}) = RSAH(B_{1},B_{2})$, and $RSAH$ does not satisfy weak collision resistance $\blacksquare$.
+Thus we can always choose a $C_{2}$ s.t. $RSAH(C_{1},C_{2}) = RSAH(B_{1},B_{2})$, so $RSAH$ does not satisfy weak collision resistance $\blacksquare$.
 \pagebreak
 
 \section{Question 5}
 
 \subsection{Message Integrity}
-In both cases Bob will see his computed $auth(x)$ won't match the sent $auth(x)$.
+In both cases Bob will see his computed $auth(x)$ won't match the sent $auth(x)$.  That means $x$ was modified.
 
 \subsection{Replay Attack} 
 From Bob's perspective, Alice sent him 101 messages that just happen to be identical.  He won't detect Oscar unless the flood of identical messages itself registers as unusual to him. 
@@ -92,17 +92,17 @@ From Bob's perspective, Alice sent him 101 messages that just happen to be ident
 \subsection{Sender Authentication with cheating 3rd party}
 Assume the question means that Bob has $x$ and is trying to verify who the sent the message, Alice or Oscar (the other alternative would be solving $\exists x$, which is trivial because Bob just checks to see if $x$ is there).  A message signed by the senders private key can be decrypted with (and only with, given large enough keys), the corresponding public key.  Bob can just check $auth(x)$ with Alice and Oscar's public keys to see who is telling the truth.
 
-MACs are similarly checked, but check the secret key to generate $auth(x)$ instead.  So long as the keys Alice and Oscar are using aren't the same, it will be easy to verify who sent what.
+MACs are similarly checked, but with the shared key used to generate $auth(x)$ instead.  So long as the keys Alice and Oscar are using aren't the same, it will be easy to verify who sent what.
 
 \subsection{Authentication with Bob cheating}
 
 If Alice sent $x$ using a digital signature, then $auth(x)$ will be generated with her private key. If Alice can show that $auth(x)$ can only be verified via her public key, then Bob is lying.
 
-Alice won't be able to prove this in the same way using MACs, however.
+Alice won't be able to prove this in the same way using MACs, however.  
 
 \section{Question 6}
 
-Attached is a drawing
+Attached is a drawing, because inputs to inputs to inputs make more sense that way.
 
 
 
